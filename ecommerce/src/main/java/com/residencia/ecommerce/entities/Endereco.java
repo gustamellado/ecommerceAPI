@@ -3,7 +3,7 @@ package com.residencia.ecommerce.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "editora")
+@Table(name = "endereco")
 public class Endereco {
 		
 	@Id
