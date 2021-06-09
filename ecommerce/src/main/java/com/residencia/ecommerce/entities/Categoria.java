@@ -1,5 +1,8 @@
 package com.residencia.ecommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,7 +14,7 @@ public class Categoria {
 	@Column(name = "categoriaid")
 	private Integer categoriaId;
 
-	@Column(name = "nomecategoria")
+	@Column(name = "nomecategoria",unique = true)
 	private String nomeCategoria;
 
 	@Column(name = "descricaocategoria")
@@ -19,6 +22,7 @@ public class Categoria {
 
 	//relacionamento com produto
 	@OneToMany(mappedBy = "categoria")
+	@JsonBackReference
 	private List<Produto> listProdutos;
 
 	public Integer getCategoriaId() {

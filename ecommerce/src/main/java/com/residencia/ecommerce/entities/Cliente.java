@@ -1,5 +1,8 @@
 package com.residencia.ecommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -37,9 +40,11 @@ public class Cliente {
 
 	@ManyToOne
 	@JoinColumn(name = "enderecoid", referencedColumnName = "enderecoid")
+	@JsonManagedReference
 	private Endereco endereco;
 
 	@OneToMany(mappedBy = "cliente")
+	@JsonBackReference
 	private List<Pedidos> listPedido;
 
 	public Integer getClientId() {

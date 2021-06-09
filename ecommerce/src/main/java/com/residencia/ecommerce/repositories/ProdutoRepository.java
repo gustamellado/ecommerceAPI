@@ -3,5 +3,7 @@ package com.residencia.ecommerce.repositories;
 import com.residencia.ecommerce.entities.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProdutosRepository extends JpaRepository<Produto,Integer> {
+public interface ProdutoRepository extends JpaRepository<Produto,Integer> {
+
+//    Produto findByName(String nome);
 }

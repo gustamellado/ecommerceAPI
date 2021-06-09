@@ -1,5 +1,8 @@
 package com.residencia.ecommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,10 +21,12 @@ public class ProdutosPedidos {
 	private Integer preco;
 
 	@OneToOne
+	@JsonManagedReference
 	@JoinColumn(name = "produtoid", referencedColumnName = "produtoid")
 	private Produto produtos;
 
 	@OneToOne
+	@JsonManagedReference
 	@JoinColumn(name = "pedidoid", referencedColumnName = "pedidoid")
 	private Pedidos pedido;
 

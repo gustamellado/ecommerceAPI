@@ -1,5 +1,8 @@
 package com.residencia.ecommerce.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.math.BigDecimal;
 import java.util.Calendar;
 
@@ -30,10 +33,12 @@ public class Produto {
 	private Calendar dataDeCadastroDoProduto;
 
 	@ManyToOne
+	@JsonManagedReference
 	@JoinColumn(name = "categoriaid", referencedColumnName = "categoriaid")
 	private Categoria categoria;
 
 	@OneToOne(mappedBy = "produtos")
+	@JsonBackReference
 	private ProdutosPedidos produtoPedido;
 
 	public Integer getProdutoId() {
