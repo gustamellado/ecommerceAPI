@@ -17,7 +17,7 @@ public class Cliente {
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "username", unique = true)
+	@Column(name = "username")
 	private String username;
 
 	@Column(name = "senha")
@@ -39,7 +39,7 @@ public class Cliente {
 	@JoinColumn(name = "enderecoid", referencedColumnName = "enderecoid")
 	private Endereco endereco;
 
-	@OneToMany(mappedBy = "pedido")
+	@OneToMany(mappedBy = "cliente")
 	private List<Pedidos> listPedido;
 
 	public Integer getClientId() {

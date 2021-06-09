@@ -11,15 +11,15 @@ public class Categoria {
 	@Column(name = "categoriaid")
 	private Integer categoriaId;
 
-	@Column(name = "nome")
-	private String nome;
+	@Column(name = "nomecategoria")
+	private String nomeCategoria;
 
-	@Column(name = "descricao")
-	private String descricao;
+	@Column(name = "descricaocategoria")
+	private String descricaoCategoria;
 
 	//relacionamento com produto
 	@OneToMany(mappedBy = "categoria")
-	private List<Produtos> listProdutos;
+	private List<Produto> listProdutos;
 
 	public Integer getCategoriaId() {
 		return categoriaId;
@@ -29,27 +29,27 @@ public class Categoria {
 		this.categoriaId = categoriaId;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getNomeCategoria() {
+		return nomeCategoria;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomeCategoria(String nomeCategoria) {
+		this.nomeCategoria = nomeCategoria;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDescricaoCategoria() {
+		return descricaoCategoria;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescricaoCategoria(String descricaoCategoria) {
+		this.descricaoCategoria = descricaoCategoria;
 	}
 
-	public List<Produtos> getListProdutos() {
+	public List<Produto> getListProdutos() {
 		return listProdutos;
 	}
 
-	public void setListProdutos(List<Produtos> listProdutos) {
+	public void setListProdutos(List<Produto> listProdutos) {
 		this.listProdutos = listProdutos;
 	}
 }

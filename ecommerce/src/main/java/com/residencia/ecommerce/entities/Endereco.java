@@ -33,7 +33,7 @@ public class Endereco {
 	@Column(name = "estado")
 	private String estado;
 
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "endereco")
 	private List<Cliente> listCliente;
 
 	public Integer getEnderecoId() {

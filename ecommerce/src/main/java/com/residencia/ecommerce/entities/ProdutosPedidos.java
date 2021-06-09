@@ -3,12 +3,12 @@ package com.residencia.ecommerce.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "produtos_pedidos")
-public class Produtos_Pedidos {
+@Table(name = "produtospedidos")
+public class ProdutosPedidos {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "produtoPedidoid")
+	@Column(name = "produtopedidoid")
 	private Integer produtoPedidoId;
 
 	@Column(name = "quantidade")
@@ -19,7 +19,7 @@ public class Produtos_Pedidos {
 
 	@OneToOne
 	@JoinColumn(name = "produtoid", referencedColumnName = "produtoid")
-	private Produtos produtos;
+	private Produto produtos;
 
 	@OneToOne
 	@JoinColumn(name = "pedidoid", referencedColumnName = "pedidoid")
@@ -49,11 +49,11 @@ public class Produtos_Pedidos {
 		this.preco = preco;
 	}
 
-	public Produtos getProdutos() {
+	public Produto getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(Produtos produtos) {
+	public void setProdutos(Produto produtos) {
 		this.produtos = produtos;
 	}
 

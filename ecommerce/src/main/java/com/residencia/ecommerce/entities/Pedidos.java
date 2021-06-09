@@ -20,8 +20,8 @@ public class Pedidos {
 	@Column(name = "listadeprodutosdopedido")
 	private Integer listaDeProdutosDoPedido;
 
-	@Column(name = "valortotaldopedido")
-	private BigDecimal valorTotalDoPedido;
+	@Column(name = "valorpedido")
+	private BigDecimal valorPedido;
 
 	@Column(name = "datadopedido")
 	private Calendar dataDoPedido;
@@ -31,10 +31,10 @@ public class Pedidos {
 
 	@ManyToOne
 	@JoinColumn(name = "clientid", referencedColumnName = "clientid")
-	private Cliente clienteid;
+	private Cliente cliente;
 
 	@OneToOne(mappedBy = "pedido")
-	private Produtos_Pedidos produtoPedido;
+	private ProdutosPedidos produtoPedido;
 
 	public Integer getPedidosId() {
 		return pedidosId;
@@ -60,12 +60,12 @@ public class Pedidos {
 		this.listaDeProdutosDoPedido = listaDeProdutosDoPedido;
 	}
 
-	public BigDecimal getValorTotalDoPedido() {
-		return valorTotalDoPedido;
+	public BigDecimal getValorPedido() {
+		return valorPedido;
 	}
 
-	public void setValorTotalDoPedido(BigDecimal valorTotalDoPedido) {
-		this.valorTotalDoPedido = valorTotalDoPedido;
+	public void setValorPedido(BigDecimal valorPedido) {
+		this.valorPedido = valorPedido;
 	}
 
 	public Calendar getDataDoPedido() {
@@ -84,19 +84,19 @@ public class Pedidos {
 		this.status = status;
 	}
 
-	public Cliente getClienteid() {
-		return clienteid;
+	public Cliente getCliente() {
+		return cliente;
 	}
 
-	public void setClienteid(Cliente clienteid) {
-		this.clienteid = clienteid;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
-	public Produtos_Pedidos getProdutoPedido() {
+	public ProdutosPedidos getProdutoPedido() {
 		return produtoPedido;
 	}
 
-	public void setProdutoPedido(Produtos_Pedidos produtoPedido) {
+	public void setProdutoPedido(ProdutosPedidos produtoPedido) {
 		this.produtoPedido = produtoPedido;
 	}
 }

@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "produto")
-public class Produtos {
+public class Produto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,21 +20,21 @@ public class Produtos {
 	@Column(name = "descricao")
 	private String descricao;
 
-	@Column(name = "preco")
-	private BigDecimal preco;
+	@Column(name = "precoproduto")
+	private BigDecimal precoProduto;
 
-	@Column(name = "quantidadeEmEstoque")
-	private String quantidadeEmEstoque;
+	@Column(name = "quantidadeestoque")
+	private String quantidadeEstoque;
 
-	@Column(name = "dataDeCadastroDoProduto")
+	@Column(name = "datadecadastrodoproduto")
 	private Calendar dataDeCadastroDoProduto;
 
 	@ManyToOne
 	@JoinColumn(name = "categoriaid", referencedColumnName = "categoriaid")
 	private Categoria categoria;
 
-	@OneToOne(mappedBy = "produto")
-	private Produtos_Pedidos produtoPedido;
+	@OneToOne(mappedBy = "produtos")
+	private ProdutosPedidos produtoPedido;
 
 	public Integer getProdutoId() {
 		return produtoId;
@@ -60,20 +60,20 @@ public class Produtos {
 		this.descricao = descricao;
 	}
 
-	public BigDecimal getPreco() {
-		return preco;
+	public BigDecimal getPrecoProduto() {
+		return precoProduto;
 	}
 
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
+	public void setPrecoProduto(BigDecimal precoProduto) {
+		this.precoProduto = precoProduto;
 	}
 
-	public String getQuantidadeEmEstoque() {
-		return quantidadeEmEstoque;
+	public String getQuantidadeEstoque() {
+		return quantidadeEstoque;
 	}
 
-	public void setQuantidadeEmEstoque(String quantidadeEmEstoque) {
-		this.quantidadeEmEstoque = quantidadeEmEstoque;
+	public void setQuantidadeEstoque(String quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
 	public Calendar getDataDeCadastroDoProduto() {
@@ -92,11 +92,11 @@ public class Produtos {
 		this.categoria = categoria;
 	}
 
-	public Produtos_Pedidos getProdutoPedido() {
+	public ProdutosPedidos getProdutoPedido() {
 		return produtoPedido;
 	}
 
-	public void setProdutoPedido(Produtos_Pedidos produtoPedido) {
+	public void setProdutoPedido(ProdutosPedidos produtoPedido) {
 		this.produtoPedido = produtoPedido;
 	}
 }
