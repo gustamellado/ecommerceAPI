@@ -1,6 +1,7 @@
 package com.residencia.ecommerce.entities;
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -10,43 +11,43 @@ public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "clienteid")
-	private Integer clienteid;
-		
-//	@OneToMany(mappedBy = "cliente_id")
-//	private Pedidos pedidos;
-	
+	@Column(name = "clientid ")
+	private Integer clientId;
+
 	@Column(name = "email")
 	private String email;
-	
-	@Column(name = "username")
+
+	@Column(name = "username", unique = true)
 	private String username;
-	
+
 	@Column(name = "senha")
 	private String senha;
-	
+
 	@Column(name = "nome")
 	private String nome;
-	
-	@Column(name = "cpf")
+
+	@Column(name = "cpf", unique = true)
 	private Integer cpf;
-	
+
 	@Column(name = "telefone")
-	private Integer telefone;
-	
+	private String telefone;
+
 	@Column(name = "datadenascimento")
-	private Calendar datadenascimento;
-	
-//	@ManyToOne
-//	@JoinColumn(name="endereco_id", referencedColumnName="enderecoid")
-//	private Endereco endereco_id;
-	
-	public Integer getClienteid() {
-		return clienteid;
+	private Calendar dataDeNascimento;
+
+	@ManyToOne
+	@JoinColumn(name = "enderecoid", referencedColumnName = "enderecoid")
+	private Endereco endereco;
+
+	@OneToMany(mappedBy = "pedido")
+	private List<Pedidos> listPedido;
+
+	public Integer getClientId() {
+		return clientId;
 	}
 
-	public void setClienteid(Integer clienteid) {
-		this.clienteid = clienteid;
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
 	}
 
 	public String getEmail() {
@@ -89,24 +90,35 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public Integer getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
-	public Calendar getDatadenascimento() {
-		return datadenascimento;
+	public Calendar getDataDeNascimento() {
+		return dataDeNascimento;
 	}
 
-	public void setDatadenascimento(Calendar datadenascimento) {
-		this.datadenascimento = datadenascimento;
+	public void setDataDeNascimento(Calendar dataDeNascimento) {
+		this.dataDeNascimento = dataDeNascimento;
 	}
-	
 
-	
-	
-	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public List<Pedidos> getListPedido() {
+		return listPedido;
+	}
+
+	public void setListPedido(List<Pedidos> listPedido) {
+		this.listPedido = listPedido;
+	}
 }

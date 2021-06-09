@@ -1,46 +1,47 @@
 package com.residencia.ecommerce.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "endereco")
 public class Endereco {
-		
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "enderecoid")
-	private Integer enderecoid;
-	
-//	@OneToMany(mappedBy = "endereco_id")
-//	private Cliente cliente;
-	
+	private Integer enderecoId;
+
 	@Column(name = "cep")
 	private Integer cep;
-	
+
 	@Column(name = "rua")
 	private String rua;
-	
+
 	@Column(name = "bairro")
 	private String bairro;
-	
+
 	@Column(name = "cidade")
 	private String cidade;
-	
+
 	@Column(name = "numero")
 	private Integer numero;
-	
+
 	@Column(name = "complemento")
 	private String complemento;
-	
+
 	@Column(name = "estado")
 	private String estado;
 
-	public Integer getEnderecoid() {
-		return enderecoid;
+	@OneToMany(mappedBy = "cliente")
+	private List<Cliente> listCliente;
+
+	public Integer getEnderecoId() {
+		return enderecoId;
 	}
 
-	public void setEnderecoid(Integer enderecoid) {
-		this.enderecoid = enderecoid;
+	public void setEnderecoId(Integer enderecoId) {
+		this.enderecoId = enderecoId;
 	}
 
 	public Integer getCep() {
@@ -98,5 +99,12 @@ public class Endereco {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
+
+	public List<Cliente> getListCliente() {
+		return listCliente;
+	}
+
+	public void setListCliente(List<Cliente> listCliente) {
+		this.listCliente = listCliente;
+	}
 }
