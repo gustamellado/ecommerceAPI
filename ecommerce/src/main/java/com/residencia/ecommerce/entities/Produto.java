@@ -1,12 +1,20 @@
 package com.residencia.ecommerce.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.math.BigDecimal;
 import java.util.Calendar;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "produto")
@@ -27,7 +35,7 @@ public class Produto {
 	private BigDecimal precoProduto;
 
 	@Column(name = "quantidadeestoque")
-	private String quantidadeEstoque;
+	private Integer quantidadeEstoque;
 
 	@Column(name = "datadecadastrodoproduto")
 	private Calendar dataDeCadastroDoProduto;
@@ -38,11 +46,11 @@ public class Produto {
 	private Categoria categoria;
 
 	@OneToOne(mappedBy = "produtos")
-	@JsonManagedReference
+	@JsonIgnore
 	private ProdutosPedidos produtoPedido;
 	
-	@Column(name="imagem")
-	private byte imagem;
+	//@Column(name="imagem")
+	//private byte imagem;
 
 	public Integer getProdutoId() {
 		return produtoId;
@@ -76,11 +84,11 @@ public class Produto {
 		this.precoProduto = precoProduto;
 	}
 
-	public String getQuantidadeEstoque() {
+	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
 
-	public void setQuantidadeEstoque(String quantidadeEstoque) {
+	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
@@ -107,6 +115,16 @@ public class Produto {
 	public void setProdutoPedido(ProdutosPedidos produtoPedido) {
 		this.produtoPedido = produtoPedido;
 	}
+
+	/*public byte getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(byte imagem) {
+		this.imagem = imagem;
+	}
+	*/
+	
 }
 
 	

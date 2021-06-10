@@ -35,7 +35,7 @@ public class ClienteController {
     //FALTA COLOCAR ATUALIZAR OS DADOS DO CLIENTE MENOS O CPF FAZER VO
 
     @DeleteMapping("/delete-conta/{id}")
-    public ResponseEntity<Cliente> deletarConta(@RequestParam Integer id){
+    public ResponseEntity<Cliente> deletarConta(@PathVariable Integer id){
         HttpHeaders headers = new HttpHeaders();
         boolean isRemoved = clienteService.deletarConta(id);
         if (isRemoved){
