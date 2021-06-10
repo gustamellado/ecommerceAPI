@@ -22,7 +22,7 @@ public class Categoria {
 
 	//relacionamento com produto
 	@OneToMany(mappedBy = "categoria")
-	@JsonBackReference
+	@JsonManagedReference
 	private List<Produto> listProdutos;
 
 	public Integer getCategoriaId() {

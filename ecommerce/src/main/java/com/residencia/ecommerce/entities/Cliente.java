@@ -1,12 +1,20 @@
 package com.residencia.ecommerce.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "cliente")
@@ -40,11 +48,11 @@ public class Cliente {
 
 	@ManyToOne
 	@JoinColumn(name = "enderecoid", referencedColumnName = "enderecoid")
-	@JsonManagedReference
+	@JsonBackReference
 	private Endereco endereco;
 
 	@OneToMany(mappedBy = "cliente")
-	@JsonBackReference
+	@JsonIgnore
 	private List<Pedidos> listPedido;
 
 	public Integer getClientId() {
@@ -111,6 +119,7 @@ public class Cliente {
 		this.dataDeNascimento = dataDeNascimento;
 	}
 
+	
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -119,6 +128,7 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
+	
 	public List<Pedidos> getListPedido() {
 		return listPedido;
 	}
@@ -126,4 +136,6 @@ public class Cliente {
 	public void setListPedido(List<Pedidos> listPedido) {
 		this.listPedido = listPedido;
 	}
+
+	
 }

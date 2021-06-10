@@ -21,12 +21,12 @@ public class ProdutosPedidos {
 	private Integer preco;
 
 	@OneToOne
-	@JsonManagedReference
+	@JsonBackReference
 	@JoinColumn(name = "produtoid", referencedColumnName = "produtoid")
 	private Produto produtos;
 
 	@OneToOne
-	@JsonManagedReference
+	@JsonBackReference
 	@JoinColumn(name = "pedidoid", referencedColumnName = "pedidoid")
 	private Pedidos pedido;
 

@@ -47,6 +47,19 @@ public class ClienteController {
         }
 
     }
+    
+    @GetMapping("/retornaconta/{id}")
+    	 public ResponseEntity<Cliente> findById(@PathVariable Integer id){
+        	 HttpHeaders headers = new HttpHeaders();
+        	return new ResponseEntity<>(clienteService.findById(id),headers,HttpStatus.OK);
+        }
+    
+    @PutMapping("/atualizaconta")
+    public ResponseEntity<Cliente> atualizarConta(@RequestBody Cliente cliente){
+    	 HttpHeaders headers = new HttpHeaders();
+    	return new ResponseEntity<>(clienteService.atualizarDadosPessoais(cliente),headers,HttpStatus.OK);
+    }
+    
 
 
     /*                                 CATEGORIAS                   */

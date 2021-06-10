@@ -20,9 +20,6 @@ public class Pedidos {
 	@Column(name = "numerodopedido")
 	private Integer numeroDoPedido;
 
-	@Column(name = "listadeprodutosdopedido")
-	private Integer listaDeProdutosDoPedido;
-
 	@Column(name = "valorpedido")
 	private BigDecimal valorPedido;
 
@@ -33,12 +30,12 @@ public class Pedidos {
 	private String status;
 
 	@ManyToOne
-	@JsonManagedReference
+	@JsonBackReference
 	@JoinColumn(name = "clientid", referencedColumnName = "clientid")
 	private Cliente cliente;
 
 	@OneToOne(mappedBy = "pedido")
-	@JsonBackReference
+	@JsonManagedReference
 	private ProdutosPedidos produtoPedido;
 
 	public Integer getPedidosId() {
@@ -55,14 +52,6 @@ public class Pedidos {
 
 	public void setNumeroDoPedido(Integer numeroDoPedido) {
 		this.numeroDoPedido = numeroDoPedido;
-	}
-
-	public Integer getListaDeProdutosDoPedido() {
-		return listaDeProdutosDoPedido;
-	}
-
-	public void setListaDeProdutosDoPedido(Integer listaDeProdutosDoPedido) {
-		this.listaDeProdutosDoPedido = listaDeProdutosDoPedido;
 	}
 
 	public BigDecimal getValorPedido() {
@@ -88,7 +77,7 @@ public class Pedidos {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
+	
 	public Cliente getCliente() {
 		return cliente;
 	}

@@ -37,7 +37,7 @@ public class Endereco {
 	private String estado;
 
 	@OneToMany(mappedBy = "endereco")
-	@JsonBackReference
+	@JsonManagedReference
 	private List<Cliente> listCliente;
 
 	public Integer getEnderecoId() {
@@ -103,7 +103,7 @@ public class Endereco {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
+	
 	public List<Cliente> getListCliente() {
 		return listCliente;
 	}

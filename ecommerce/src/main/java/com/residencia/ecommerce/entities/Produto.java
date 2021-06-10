@@ -33,13 +33,16 @@ public class Produto {
 	private Calendar dataDeCadastroDoProduto;
 
 	@ManyToOne
-	@JsonManagedReference
+	@JsonBackReference
 	@JoinColumn(name = "categoriaid", referencedColumnName = "categoriaid")
 	private Categoria categoria;
 
 	@OneToOne(mappedBy = "produtos")
-	@JsonBackReference
+	@JsonManagedReference
 	private ProdutosPedidos produtoPedido;
+	
+	@Column(name="imagem")
+	private byte imagem;
 
 	public Integer getProdutoId() {
 		return produtoId;
