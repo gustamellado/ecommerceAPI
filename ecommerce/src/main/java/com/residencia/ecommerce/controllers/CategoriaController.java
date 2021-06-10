@@ -17,11 +17,11 @@ public class CategoriaController {
     @Autowired
     private CategoriaService categoriaService;
 
-//    @GetMapping("/{nomeCategoria}")
-//    public ResponseEntity<Categoria> vizualizarUmaCategoria (@PathVariable String nomeCategoria){
-//        HttpHeaders headers = new HttpHeaders();
-//        return new ResponseEntity<>(categoriaService.vizualizarUmaCategoria(nomeCategoria),headers, HttpStatus.OK);
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Categoria> vizualizarUmaCategoria (@PathVariable Integer id){
+        HttpHeaders headers = new HttpHeaders();
+        return new ResponseEntity<>(categoriaService.vizualizarUmaCategoria(id),headers, HttpStatus.OK);
+    }
 
     @GetMapping
     public ResponseEntity<List<Categoria>>vizualizarTodasAsCategorias() throws Exception{
@@ -41,7 +41,7 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Categoria> deletarUmaCategoria(@RequestParam Integer id){
+    public ResponseEntity<Categoria> deletarUmaCategoria(@PathVariable Integer id){
         HttpHeaders headers = new HttpHeaders();
         boolean isRemoved = categoriaService.deletarUmaCategoria(id);
         if (isRemoved){

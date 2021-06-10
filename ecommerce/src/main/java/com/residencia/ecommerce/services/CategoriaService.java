@@ -15,11 +15,11 @@ public class CategoriaService {
     @Autowired
     public CategoriaRepository categoriaRepository;
 
-//    public Categoria vizualizarUmaCategoria(String nomeCategoria){
-//        return categoriaRepository.findByName(nomeCategoria);
-//
-//        //corrigir, porque nome nao e id, porem nome nao pode repetir
-//    }
+    public Categoria vizualizarUmaCategoria(Integer id){
+        return categoriaRepository.findById(id).get();
+
+        //corrigir, porque nome nao e id, porem nome nao pode repetir
+    }
 
     public List<Categoria> vizualizarTodasAsCategorias(){
         return categoriaRepository.findAll();

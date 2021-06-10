@@ -119,7 +119,6 @@ public class Cliente {
 		this.dataDeNascimento = dataDeNascimento;
 	}
 
-	
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -128,7 +127,6 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
-	
 	public List<Pedidos> getListPedido() {
 		return listPedido;
 	}
@@ -136,6 +134,4 @@ public class Cliente {
 	public void setListPedido(List<Pedidos> listPedido) {
 		this.listPedido = listPedido;
 	}
-
-	
 }

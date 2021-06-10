@@ -17,18 +17,16 @@ public class ClienteService {
     @Autowired
     public ClienteRepository clienteRepository;
 
+    public Cliente criarUmaNovaConta(Cliente cliente){
+        Cliente novaConta = clienteRepository.save(cliente);
+        return  novaConta;
+    }
+
 
     public Cliente findById(Integer id) {
     	return clienteRepository.findById(id).get();
     }
 
-    //FAZER PELO VO
-    public Cliente atualizarDadosPessoais(Cliente Cliente) {
-        
-    	Cliente antigoCliente = atualizaCliente(Cliente);
-    	return clienteRepository.save(antigoCliente);
-
-    }
 
     public boolean deletarConta(Integer id){
         if(id != null) {
@@ -41,6 +39,14 @@ public class ClienteService {
 
 
     }
+
+    public Cliente atualizarDadosPessoais(Cliente Cliente) {
+
+    	Cliente antigoCliente = atualizaCliente(Cliente);
+    	return clienteRepository.save(antigoCliente);
+
+    }
+
 
     private Cliente atualizaCliente(Cliente cliente) {
     	Cliente antigoCliente = clienteRepository.getById(cliente.getClientId());
