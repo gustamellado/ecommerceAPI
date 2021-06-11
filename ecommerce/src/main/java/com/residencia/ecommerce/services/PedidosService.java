@@ -3,7 +3,11 @@ package com.residencia.ecommerce.services;
 import java.util.List;
 
 import com.residencia.ecommerce.entities.Categoria;
+import com.residencia.ecommerce.entities.Cliente;
+import com.residencia.ecommerce.entities.ProdutosPedidos;
+import com.residencia.ecommerce.repositories.ClienteRepository;
 import com.residencia.ecommerce.repositories.PedidosRepository;
+import com.residencia.ecommerce.repositories.ProdutosPedidosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,9 @@ public class PedidosService {
 
     @Autowired
     public PedidosRepository pedidosRepository;
+    @Autowired
+    public ProdutosPedidosRepository produtosPedidosRepository;
+
 
 
     public Pedidos vizualizarUmPedido(Integer pedidoid){
@@ -48,7 +55,22 @@ public class PedidosService {
         return pedidosRepository.save(pedidos);
     }
 
-    //public Pedidos editarUmPedidoParaFinalizado(Pedidos pedidos);
-    //public Pedidos FinalizarPedido(Pedidos pedidos);
+    public Pedidos fecharPedido(Integer id ){
+
+        Pedidos pedidos = pedidosRepository.findById(id).get();
+
+
+        if (!pedidos.getStatus().equalsIgnoreCase("fechado")){
+            String email = pedidos.getCliente().getEmail();
+            List<ProdutosPedidos> produtosPedidosList= produtosPedidosRepository.FindByPedido(pedidos);
+
+            pedidos.setStatus("fechado");
+            pedidosRepository.save(pedidos);
+        }else{
+            pedidos.setStatus("testado");
+            pedidosRepository.save(pedidos);
+        }
+        return pedidos;
+    }
 
 }

@@ -59,5 +59,13 @@ public class PedidoController {
         return pedidosService.editarUmPedido(pedidos);
     }
 
+    @PutMapping("/fecharPedido/{id}")
+    public Pedidos fecharPedido(@PathVariable Integer id){
+
+        return pedidosService.fecharPedido(id);
+
+
+    }
+
 
 }

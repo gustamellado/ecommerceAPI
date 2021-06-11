@@ -27,6 +27,12 @@ public class ProdutoController {
     @Autowired
     ArquivosService arquivosService;
 
+    @GetMapping("/{produto}")
+    public ResponseEntity<Produto> vizualizarUmProduto (@PathVariable String produto){
+        HttpHeaders headers = new HttpHeaders();
+        return new ResponseEntity<>(produtoService.vizualizarUmProduto(produto),headers, HttpStatus.OK);
+    }
+
     @GetMapping("/vizualizar-produtos")
     public ResponseEntity<List<Produto>> vizualizarTodosOsProdutos() throws Exception{
 

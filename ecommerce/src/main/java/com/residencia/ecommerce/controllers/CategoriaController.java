@@ -17,10 +17,10 @@ public class CategoriaController {
     @Autowired
     private CategoriaService categoriaService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Categoria> vizualizarUmaCategoria (@PathVariable Integer id){
+    @GetMapping("/{categoria}")
+    public ResponseEntity<Categoria> vizualizarUmaCategoria (@PathVariable String categoria){
         HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>(categoriaService.vizualizarUmaCategoria(id),headers, HttpStatus.OK);
+        return new ResponseEntity<>(categoriaService.vizualizarUmaCategoria(categoria),headers, HttpStatus.OK);
     }
 
     @GetMapping

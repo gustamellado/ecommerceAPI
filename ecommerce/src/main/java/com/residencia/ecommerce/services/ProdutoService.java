@@ -14,10 +14,10 @@ public class ProdutoService {
     @Autowired
     public ProdutoRepository produtoRepository;
 
-//    public Produto vizualizarUmProduto(String nome){
-//        return produtoRepository.findByName(nome);
-//        //corrigir, porque nome nao e id, porem nome nao pode repetir
-//    }
+    public Produto vizualizarUmProduto(String nome){
+        return produtoRepository.findByNome(nome);
+
+    }
 
     public List<Produto> vizualizarTodosOsProdutos(){
         return produtoRepository.findAll();

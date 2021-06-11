@@ -15,8 +15,8 @@ public class CategoriaService {
     @Autowired
     public CategoriaRepository categoriaRepository;
 
-    public Categoria vizualizarUmaCategoria(Integer id){
-        return categoriaRepository.findById(id).get();
+    public Categoria vizualizarUmaCategoria(String categoria){
+        return categoriaRepository.findByNomeCategoria(categoria);
 
         //corrigir, porque nome nao e id, porem nome nao pode repetir
     }
