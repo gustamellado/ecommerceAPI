@@ -1,16 +1,14 @@
 package com.residencia.ecommerce.vo;
 
-public class CepVO {
+public class EnderecoClienteVO {
 	
 	private String cep;
 	private String logradouro;
-	private String complemento;
 	private String bairro;
 	private String localidade;
 	private String uf;
-	private String gia;
-	private String ddd;
-	private String siafi;
+	private String numero;
+	private String complemento;
 
 	public String getCep() {
 		return cep;
@@ -23,12 +21,6 @@ public class CepVO {
 	}
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
-	}
-	public String getComplemento() {
-		return complemento;
-	}
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
 	}
 	public String getBairro() {
 		return bairro;
@@ -48,23 +40,17 @@ public class CepVO {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	public String getGia() {
-		return gia;
+	public String getNumero() {
+		return numero;
 	}
-	public void setGia(String gia) {
-		this.gia = gia;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
-	public String getDdd() {
-		return ddd;
+	public String getComplemento() {
+		return complemento;
 	}
-	public void setDdd(String ddd) {
-		this.ddd = ddd;
-	}
-	public String getSiafi() {
-		return siafi;
-	}
-	public void setSiafi(String siafi) {
-		this.siafi = siafi;
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 	
 	

@@ -3,12 +3,12 @@ package com.residencia.ecommerce.services;
 
 
 
-import com.residencia.ecommerce.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.residencia.ecommerce.entities.Cliente;
+import com.residencia.ecommerce.repositories.ClienteRepository;
+import com.residencia.ecommerce.vo.CadastroClienteVO;
 
 
 @Service
@@ -17,13 +17,30 @@ public class ClienteService {
     @Autowired
     public ClienteRepository clienteRepository;
 
-    public Cliente criarUmaNovaConta(Cliente cliente){
-        Cliente novaConta = clienteRepository.save(cliente);
-        return  novaConta;
+    public Cliente criarUmaNovaConta(CadastroClienteVO cadastro){
+    	Cliente cliente = new Cliente();
+    	cliente = converteCadastroVOParaEntidade(cadastro); 
+    	clienteRepository.save(cliente);
+        return  cliente;
     }
 
 
-    public Cliente findById(Integer id) {
+    private Cliente converteCadastroVOParaEntidade(CadastroClienteVO cadastro) {
+		Cliente cliente = new Cliente();
+		
+		cliente.setCpf(cadastro.getCpf());
+		cliente.setDataDeNascimento(cadastro.getDataNascimento());
+		cliente.setEmail(cadastro.getEmail());
+		cliente.setEndereco(cadastro.getEndereco());
+		cliente.setNome(cadastro.getNome());
+		cliente.setSenha(cadastro.getSenha());
+		cliente.setTelefone(cadastro.getTelefone());
+		cliente.setUsername(cadastro.getUsername());
+		return cliente;
+	}
+
+
+	public Cliente findById(Integer id) {
     	return clienteRepository.findById(id).get();
     }
 

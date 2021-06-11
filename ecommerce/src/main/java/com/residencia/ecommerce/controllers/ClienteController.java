@@ -1,16 +1,24 @@
 package com.residencia.ecommerce.controllers;
 
 
-import com.residencia.ecommerce.entities.Categoria;
-import com.residencia.ecommerce.entities.Cliente;
-import com.residencia.ecommerce.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.residencia.ecommerce.entities.Cliente;
+import com.residencia.ecommerce.entities.Endereco;
+import com.residencia.ecommerce.services.ClienteService;
+import com.residencia.ecommerce.services.EnderecoService;
+import com.residencia.ecommerce.vo.CadastroClienteVO;
 
 @RestController
 @RequestMapping("/Cliente")
@@ -19,15 +27,21 @@ public class ClienteController {
 
     @Autowired
     ClienteService clienteService;
+    @Autowired
+    EnderecoService enderecoService;
 
     @PostMapping("/save")
-    public ResponseEntity<Cliente> criarUmaNovaConta(@RequestBody Cliente cliente){
-        HttpHeaders headers = new HttpHeaders();
+    public Cliente criarUmaNovaConta(@RequestBody CadastroClienteVO cadastro) {
+    	
+    	cadastro.setEndereco(enderecoService.saveVO(enderecoService.consultarDadosPorCep(cadastro.getCep()),cadastro.getNumero(),cadastro.getComplemento()));
+    	
+    	return clienteService.criarUmaNovaConta(cadastro);
+    	/*HttpHeaders headers = new HttpHeaders();
 
-        if(null != clienteService.criarUmaNovaConta(cliente))
-            return new ResponseEntity<Cliente>(clienteService.criarUmaNovaConta(cliente), headers, HttpStatus.OK);
+        if(null != clienteService.criarUmaNovaConta(cadastro))
+            return new ResponseEntity<>(clienteService.criarUmaNovaConta(cadastro), headers, HttpStatus.OK);
         else
-            return new ResponseEntity<Cliente>(clienteService.criarUmaNovaConta(cliente), headers, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(clienteService.criarUmaNovaConta(cadastro), headers, HttpStatus.BAD_REQUEST);*/
     }
 
     @DeleteMapping("/delete-conta/{id}")

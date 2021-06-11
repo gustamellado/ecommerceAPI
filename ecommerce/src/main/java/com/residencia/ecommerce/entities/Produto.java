@@ -49,8 +49,8 @@ public class Produto {
 	@JsonIgnore
 	private ProdutosPedidos produtoPedido;
 	
-	//@Column(name="imagem")
-	//private byte imagem;
+	@Column(name="imagem")
+	private String imagem;
 
 	public Integer getProdutoId() {
 		return produtoId;
@@ -116,14 +116,15 @@ public class Produto {
 		this.produtoPedido = produtoPedido;
 	}
 
-	/*public byte getImagem() {
+	public String getImagem() {
 		return imagem;
 	}
 
-	public void setImagem(byte imagem) {
+	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
-	*/
+
+	
 	
 }
 
