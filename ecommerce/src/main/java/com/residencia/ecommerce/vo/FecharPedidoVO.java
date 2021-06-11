@@ -1,6 +1,5 @@
 package com.residencia.ecommerce.vo;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public class FecharPedidoVO {

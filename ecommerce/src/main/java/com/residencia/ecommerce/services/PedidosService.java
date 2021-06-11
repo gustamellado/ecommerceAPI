@@ -66,8 +66,8 @@ public class PedidosService {
             fpVO.setClienteEmail(pedidos.getCliente().getEmail());
             
             float total = 0;
-            
-            List<ProdutosPedidos> produtosPedidosList= produtosPedidosRepository.FindByPedido(pedidos);
+           /* 
+            List<ProdutosPedidos> produtosPedidosList= produtosPedidosRepository.FindByPedidoid(pedidos);
             List<ProdutoQtdVO> listProdQtd = new ArrayList<>();
             ProdutoQtdVO prodQtd = new ProdutoQtdVO();
             
@@ -80,7 +80,7 @@ public class PedidosService {
             
             fpVO.setListProdutoQtd(listProdQtd);
            fpVO.setValorCompra(total);
-
+*/
             pedidos.setStatus("fechado");
             pedidosRepository.save(pedidos);
         }else{
