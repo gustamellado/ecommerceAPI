@@ -1,17 +1,17 @@
 package com.residencia.ecommerce.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.residencia.ecommerce.entities.Categoria;
-import com.residencia.ecommerce.entities.Cliente;
-import com.residencia.ecommerce.entities.ProdutosPedidos;
-import com.residencia.ecommerce.repositories.ClienteRepository;
-import com.residencia.ecommerce.repositories.PedidosRepository;
-import com.residencia.ecommerce.repositories.ProdutosPedidosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.residencia.ecommerce.entities.Pedidos;
+import com.residencia.ecommerce.entities.ProdutosPedidos;
+import com.residencia.ecommerce.repositories.PedidosRepository;
+import com.residencia.ecommerce.repositories.ProdutosPedidosRepository;
+import com.residencia.ecommerce.vo.FecharPedidoVO;
+import com.residencia.ecommerce.vo.ProdutoQtdVO;
 
 
 @Service
@@ -61,8 +61,25 @@ public class PedidosService {
 
 
         if (!pedidos.getStatus().equalsIgnoreCase("fechado")){
-            String email = pedidos.getCliente().getEmail();
+            FecharPedidoVO fpVO = new FecharPedidoVO();
+            fpVO.setPedidoId(id);
+            fpVO.setClienteEmail(pedidos.getCliente().getEmail());
+            
+            float total = 0;
+            
             List<ProdutosPedidos> produtosPedidosList= produtosPedidosRepository.FindByPedido(pedidos);
+            List<ProdutoQtdVO> listProdQtd = new ArrayList<>();
+            ProdutoQtdVO prodQtd = new ProdutoQtdVO();
+            
+            for(ProdutosPedidos pp : produtosPedidosList) {
+            	total= pp.getPreco()*pp.getQuantidade();
+            	prodQtd.setNomeProduto(pp.getProdutos().getNome());
+            	prodQtd.setQuantidade(pp.getQuantidade());
+            	listProdQtd.add(prodQtd);
+            }
+            
+            fpVO.setListProdutoQtd(listProdQtd);
+           fpVO.setValorCompra(total);
 
             pedidos.setStatus("fechado");
             pedidosRepository.save(pedidos);

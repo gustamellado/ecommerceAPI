@@ -1,9 +1,17 @@
 package com.residencia.ecommerce.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.math.BigDecimal;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "produtospedidos")
@@ -18,7 +26,7 @@ public class ProdutosPedidos {
 	private Integer quantidade;
 
 	@Column(name = "preco")
-	private Integer preco;
+	private float preco;
 
 	@OneToOne
 	@JsonBackReference
@@ -46,11 +54,11 @@ public class ProdutosPedidos {
 		this.quantidade = quantidade;
 	}
 
-	public Integer getPreco() {
+	public float getPreco() {
 		return preco;
 	}
 
-	public void setPreco(Integer preco) {
+	public void setPreco(float preco) {
 		this.preco = preco;
 	}
 
