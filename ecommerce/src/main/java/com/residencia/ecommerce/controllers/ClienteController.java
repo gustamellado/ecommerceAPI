@@ -1,6 +1,8 @@
 package com.residencia.ecommerce.controllers;
 
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.residencia.ecommerce.entities.Cliente;
-import com.residencia.ecommerce.entities.Endereco;
 import com.residencia.ecommerce.services.ClienteService;
 import com.residencia.ecommerce.services.EnderecoService;
 import com.residencia.ecommerce.vo.CadastroClienteVO;
@@ -31,7 +32,7 @@ public class ClienteController {
     EnderecoService enderecoService;
 
     @PostMapping("/save")
-    public Cliente criarUmaNovaConta(@RequestBody CadastroClienteVO cadastro) {
+    public Cliente criarUmaNovaConta(@Valid @RequestBody CadastroClienteVO cadastro) {
     	
     	cadastro.setEndereco(enderecoService.saveVO(enderecoService.consultarDadosPorCep(cadastro.getCep()),cadastro.getNumero(),cadastro.getComplemento()));
     	
@@ -65,7 +66,7 @@ public class ClienteController {
         }
     
     @PutMapping("/atualizaconta")
-    public ResponseEntity<Cliente> atualizarConta(@RequestBody Cliente cliente){
+    public ResponseEntity<Cliente> atualizarConta(@Valid @RequestBody Cliente cliente){
     	 HttpHeaders headers = new HttpHeaders();
     	return new ResponseEntity<>(clienteService.atualizarDadosPessoais(cliente),headers,HttpStatus.OK);
     }

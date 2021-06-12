@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,18 +29,27 @@ public class Cliente {
 	@Column(name = "clientid ")
 	private Integer clientId;
 
+	@NotBlank 
+    @Email(message= "E-mail inserido de forma incorreta!")
+    @Pattern(regexp=".+@.+\\..+", message="E-mail inserido de forma incorreta!")
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "username")
+	@NotBlank(message= "Username é obrigatório!")
+    @Size(max = 15, message= "Username pode ter até {max} caracteres!")
+    @Size(min = 5, message= "Username tem que ter no mínimo {min} caracteres!")
+	@Column(name = "username", unique=true)
 	private String username;
 
+	@NotBlank(message= "Insira sua senha!")
 	@Column(name = "senha")
 	private String senha;
 
+	@NotBlank  (message="Insira seu nome!")
 	@Column(name = "nome")
 	private String nome;
 
+	@NotBlank  (message="Insira seu cpf!")
 	@Column(name = "cpf", unique = true)
 	private String cpf;
 
