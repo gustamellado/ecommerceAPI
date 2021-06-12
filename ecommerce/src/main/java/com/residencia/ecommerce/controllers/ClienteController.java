@@ -32,17 +32,17 @@ public class ClienteController {
     EnderecoService enderecoService;
 
     @PostMapping("/save")
-    public Cliente criarUmaNovaConta(@Valid @RequestBody CadastroClienteVO cadastro) {
-    	
+    public ResponseEntity<Cliente> criarUmaNovaConta(@Valid @RequestBody CadastroClienteVO cadastro) {
+    	HttpHeaders headers = new HttpHeaders();
     	cadastro.setEndereco(enderecoService.saveVO(enderecoService.consultarDadosPorCep(cadastro.getCep()),cadastro.getNumero(),cadastro.getComplemento()));
     	
-    	return clienteService.criarUmaNovaConta(cadastro);
-    	/*HttpHeaders headers = new HttpHeaders();
+    	//return new ResponseEntity<Cliente>(clienteService.criarUmaNovaConta(cadastro),headers,HttpStatus.OK);
+    	//HttpHeaders headers = new HttpHeaders();
 
         if(null != clienteService.criarUmaNovaConta(cadastro))
-            return new ResponseEntity<>(clienteService.criarUmaNovaConta(cadastro), headers, HttpStatus.OK);
+            return new ResponseEntity<Cliente>(clienteService.criarUmaNovaConta(cadastro), headers, HttpStatus.OK);
         else
-            return new ResponseEntity<>(clienteService.criarUmaNovaConta(cadastro), headers, HttpStatus.BAD_REQUEST);*/
+            return new ResponseEntity<Cliente>(clienteService.criarUmaNovaConta(cadastro), headers, HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/delete-conta/{id}")

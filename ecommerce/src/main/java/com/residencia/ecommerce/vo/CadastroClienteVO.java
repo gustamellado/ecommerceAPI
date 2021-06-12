@@ -2,19 +2,38 @@ package com.residencia.ecommerce.vo;
 
 import java.util.Calendar;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import com.residencia.ecommerce.entities.Endereco;
 
 public class CadastroClienteVO {
 	private String cep;
 	private String complemento;
 	private String numero;
+	
+	@NotBlank  (message="Insira seu nome!")
 	private String nome;
+	
+	@NotBlank(message= "Username é obrigatório!")
+    @Size(max = 15, message= "Username pode ter até {max} caracteres!")
+    @Size(min = 5, message= "Username tem que ter no mínimo {min} caracteres!")
 	private String username;
+	
+	@NotBlank(message= "Insira sua senha!")
 	private String senha;
+	
+	@NotBlank  (message="Insira seu cpf!")
 	private String cpf;
 	private String telefone;
 	private Calendar dataNascimento;
 	private Endereco endereco;
+	
+	@NotBlank (message= "Email obrigatorio!")
+    @Email(message= "E-mail inserido de forma incorreta!")
+    @Pattern(regexp=".+@.+\\..+", message="E-mail inserido de forma incorreta!")
 	private String email;
 	
 	
