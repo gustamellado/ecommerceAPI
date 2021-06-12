@@ -1,12 +1,13 @@
 package com.residencia.ecommerce.vo;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class FecharPedidoVO {
 	private Integer pedidoId;
 	private String clienteEmail;
 	private List<ProdutoQtdVO> listProdutoQtd;
-	private float valorCompra;
+	private BigDecimal valorCompra;
 	
 	
 	public Integer getPedidoId() {
@@ -28,10 +29,10 @@ public class FecharPedidoVO {
 	public void setListProdutoQtd(List<ProdutoQtdVO> listProdutoQtd) {
 		this.listProdutoQtd = listProdutoQtd;
 	}
-	public float getValorCompra() {
+	public BigDecimal getValorCompra() {
 		return valorCompra;
 	}
-	public void setValorCompra(float valorCompra) {
+	public void setValorCompra(BigDecimal valorCompra) {
 		this.valorCompra = valorCompra;
 	}
 	

@@ -2,6 +2,7 @@ package com.residencia.ecommerce.entities;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -42,9 +43,9 @@ public class Pedidos {
 	@JoinColumn(name = "clientid", referencedColumnName = "clientid")
 	private Cliente cliente;
 
-	@OneToOne(mappedBy = "pedido")
+	@OneToMany(mappedBy = "pedido")
 	@JsonIgnore
-	private ProdutosPedidos produtoPedido;
+	private List<ProdutosPedidos> listProdutoPedido;
 
 	public Integer getPedidosId() {
 		return pedidosId;
@@ -94,12 +95,14 @@ public class Pedidos {
 		this.cliente = cliente;
 	}
 
-	public ProdutosPedidos getProdutoPedido() {
-		return produtoPedido;
+	public List<ProdutosPedidos> getListProdutoPedido() {
+		return listProdutoPedido;
 	}
 
-	public void setProdutoPedido(ProdutosPedidos produtoPedido) {
-		this.produtoPedido = produtoPedido;
+	public void setListProdutoPedido(List<ProdutosPedidos> listProdutoPedido) {
+		this.listProdutoPedido = listProdutoPedido;
 	}
+
+	
 }
 

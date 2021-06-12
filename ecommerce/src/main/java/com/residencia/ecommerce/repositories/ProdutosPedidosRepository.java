@@ -10,5 +10,5 @@ import com.residencia.ecommerce.entities.ProdutosPedidos;
 
 @Repository
 public interface ProdutosPedidosRepository extends JpaRepository<ProdutosPedidos,Integer> {
-    List<ProdutosPedidos> FindByPedido(Pedidos pedidos);
+   
 }

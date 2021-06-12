@@ -55,39 +55,39 @@ public class PedidosService {
         return pedidosRepository.save(pedidos);
     }
 
-    public Pedidos fecharPedido(Integer id ){
+    public FecharPedidoVO fecharPedido(Integer id ){
 
         Pedidos pedidos = pedidosRepository.findById(id).get();
-
+        FecharPedidoVO fpVO = new FecharPedidoVO();
 
         if (!pedidos.getStatus().equalsIgnoreCase("fechado")){
-            FecharPedidoVO fpVO = new FecharPedidoVO();
+           
             fpVO.setPedidoId(id);
             fpVO.setClienteEmail(pedidos.getCliente().getEmail());
             
-            float total = 0;
-           /* 
-            List<ProdutosPedidos> produtosPedidosList= produtosPedidosRepository.FindByPedidoid(pedidos);
+           
+            List<ProdutosPedidos> produtosPedidosList= pedidos.getListProdutoPedido();
             List<ProdutoQtdVO> listProdQtd = new ArrayList<>();
-            ProdutoQtdVO prodQtd = new ProdutoQtdVO();
+            
             
             for(ProdutosPedidos pp : produtosPedidosList) {
-            	total= pp.getPreco()*pp.getQuantidade();
+            	ProdutoQtdVO prodQtd = new ProdutoQtdVO();
             	prodQtd.setNomeProduto(pp.getProdutos().getNome());
             	prodQtd.setQuantidade(pp.getQuantidade());
             	listProdQtd.add(prodQtd);
             }
             
             fpVO.setListProdutoQtd(listProdQtd);
-           fpVO.setValorCompra(total);
-*/
+            fpVO.setValorCompra(pedidos.getValorPedido());
+
             pedidos.setStatus("fechado");
             pedidosRepository.save(pedidos);
+            return fpVO;
         }else{
             pedidos.setStatus("testado");
             pedidosRepository.save(pedidos);
         }
-        return pedidos;
+        return fpVO;
     }
 
 }

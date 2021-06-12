@@ -1,6 +1,7 @@
 package com.residencia.ecommerce.entities;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,8 +40,9 @@ public class Produto {
 	@Column(name = "quantidadeestoque")
 	private Integer quantidadeEstoque;
 
+	@CreationTimestamp
 	@Column(name = "datadecadastrodoproduto")
-	private Calendar dataDeCadastroDoProduto;
+	private LocalDateTime dataDeCadastroDoProduto;
 
 	@ManyToOne
 	@JsonBackReference
@@ -92,11 +96,11 @@ public class Produto {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
-	public Calendar getDataDeCadastroDoProduto() {
+	public LocalDateTime getDataDeCadastroDoProduto() {
 		return dataDeCadastroDoProduto;
 	}
 
-	public void setDataDeCadastroDoProduto(Calendar dataDeCadastroDoProduto) {
+	public void setDataDeCadastroDoProduto(LocalDateTime dataDeCadastroDoProduto) {
 		this.dataDeCadastroDoProduto = dataDeCadastroDoProduto;
 	}
 
