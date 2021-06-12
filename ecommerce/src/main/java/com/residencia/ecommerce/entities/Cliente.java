@@ -31,7 +31,7 @@ public class Cliente {
 
 	@NotBlank (message= "Email obrigatorio!")
     @Email(message= "E-mail inserido de forma incorreta!")
-   @Pattern(regexp=".+@.+\\..+", message="E-mail inserido de forma incorreta!")
+    @Pattern(regexp=".+@.+\\..+", message="E-mail inserido de forma incorreta!")
 	@Column(name = "email")
 	private String email;
 

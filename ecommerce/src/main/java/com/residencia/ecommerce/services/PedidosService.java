@@ -3,11 +3,14 @@ package com.residencia.ecommerce.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.residencia.ecommerce.entities.Pedidos;
 import com.residencia.ecommerce.entities.ProdutosPedidos;
+import com.residencia.ecommerce.exceptions.EmailException;
 import com.residencia.ecommerce.repositories.PedidosRepository;
 import com.residencia.ecommerce.repositories.ProdutosPedidosRepository;
 import com.residencia.ecommerce.vo.FecharPedidoVO;
@@ -21,6 +24,8 @@ public class PedidosService {
     public PedidosRepository pedidosRepository;
     @Autowired
     public ProdutosPedidosRepository produtosPedidosRepository;
+    @Autowired 
+    public EmailService emailService;
 
 
 
@@ -55,7 +60,7 @@ public class PedidosService {
         return pedidosRepository.save(pedidos);
     }
 
-    public FecharPedidoVO fecharPedido(Integer id ){
+    public FecharPedidoVO fecharPedido(Integer id ) throws MessagingException, EmailException{
 
         Pedidos pedidos = pedidosRepository.findById(id).get();
         FecharPedidoVO fpVO = new FecharPedidoVO();
@@ -79,6 +84,8 @@ public class PedidosService {
             
             fpVO.setListProdutoQtd(listProdQtd);
             fpVO.setValorCompra(pedidos.getValorPedido());
+            
+            emailService.emailFecharPedido(fpVO);
 
             pedidos.setStatus("fechado");
             pedidosRepository.save(pedidos);

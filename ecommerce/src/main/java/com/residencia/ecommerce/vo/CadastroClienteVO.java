@@ -32,7 +32,6 @@ public class CadastroClienteVO {
 	private Endereco endereco;
 	
 	@NotBlank (message= "Email obrigatorio!")
-    @Email(message= "E-mail inserido de forma incorreta!")
     @Pattern(regexp=".+@.+\\..+", message="E-mail inserido de forma incorreta!")
 	private String email;
 	

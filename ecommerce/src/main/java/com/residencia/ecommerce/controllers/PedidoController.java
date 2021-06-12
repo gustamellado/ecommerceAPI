@@ -2,6 +2,8 @@ package com.residencia.ecommerce.controllers;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.residencia.ecommerce.entities.Pedidos;
+import com.residencia.ecommerce.exceptions.EmailException;
 import com.residencia.ecommerce.services.PedidosService;
 import com.residencia.ecommerce.vo.FecharPedidoVO;
 
@@ -70,7 +73,7 @@ public class PedidoController {
     }
 
     @PutMapping("/fecharPedido/{id}")
-    public FecharPedidoVO fecharPedido(@PathVariable Integer id){
+    public FecharPedidoVO fecharPedido(@PathVariable Integer id) throws MessagingException, EmailException{
 
         return pedidosService.fecharPedido(id);
 
