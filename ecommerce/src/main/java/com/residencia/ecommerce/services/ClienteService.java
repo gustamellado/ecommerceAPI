@@ -4,11 +4,14 @@ package com.residencia.ecommerce.services;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.residencia.ecommerce.entities.Cliente;
 import com.residencia.ecommerce.repositories.ClienteRepository;
 import com.residencia.ecommerce.vo.CadastroClienteVO;
+
+import java.util.List;
 
 
 @Service
@@ -33,7 +36,7 @@ public class ClienteService {
 		cliente.setEmail(cadastro.getEmail());
 		cliente.setEndereco(cadastro.getEndereco());
 		cliente.setNome(cadastro.getNome());
-		cliente.setSenha(cadastro.getSenha());
+		cliente.setSenha(new BCryptPasswordEncoder().encode(cadastro.getSenha()));
 		cliente.setTelefone(cadastro.getTelefone());
 		cliente.setUsername(cadastro.getUsername());
 		return cliente;
@@ -43,6 +46,10 @@ public class ClienteService {
 	public Cliente findById(Integer id) {
     	return clienteRepository.findById(id).get();
     }
+
+    public List<Cliente> findAll(){
+    	return clienteRepository.findAll();
+	}
 
 
     public boolean deletarConta(Integer id){

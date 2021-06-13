@@ -29,12 +29,10 @@ public class ProdutosPedidos {
 	private float preco;
 
 	@OneToOne
-	@JsonBackReference
 	@JoinColumn(name = "produtoid", referencedColumnName = "produtoid")
 	private Produto produtos;
 
 	@OneToOne
-	@JsonBackReference
 	@JoinColumn(name = "pedidoid", referencedColumnName = "pedidoid")
 	private Pedidos pedido;
 

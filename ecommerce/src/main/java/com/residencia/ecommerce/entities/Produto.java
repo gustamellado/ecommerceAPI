@@ -30,7 +30,7 @@ public class Produto {
 	@Column(name = "produtoid")
 	private Integer produtoId;
 
-	@Column(name = "nome")
+	@Column(name = "nome",unique = true)
 	private String nome;
 
 	@Column(name = "descricao")

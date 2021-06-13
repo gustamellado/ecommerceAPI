@@ -2,19 +2,19 @@ package com.residencia.ecommerce.vo;
 
 import java.util.Calendar;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 import com.residencia.ecommerce.entities.Endereco;
 
 public class CadastroClienteVO {
+
+	@NotBlank(message = "insira um cep valido")
 	private String cep;
+
 	private String complemento;
 	private String numero;
 	
-	@NotBlank  (message="Insira seu nome!")
+	@NotBlank(message="Insira seu nome!")
 	private String nome;
 	
 	@NotBlank(message= "Username é obrigatório!")

@@ -72,7 +72,7 @@ public class EmailService {
 
 		try {
 			helper.setFrom(emailRemetente);
-			helper.setTo("danielelennertz@gmail.com");
+			helper.setTo("Grupo4@gmail.com");
 			helper.setSubject("Pedido Id " + fpVO.getPedidoId());
 
 			SimpleDateFormat sdfData = new SimpleDateFormat("dd/MM/yyyy");

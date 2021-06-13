@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -29,6 +31,8 @@ public class Pedidos {
 	@Column(name = "numerodopedido")
 	private Integer numeroDoPedido;
 
+	@NotNull(message="Insira o valor do pedido!")
+	@DecimalMin(value="1",  message= " O valor mínimo é de R$ {value}!")
 	@Column(name = "valorpedido")
 	private BigDecimal valorPedido;
 

@@ -3,6 +3,7 @@ package com.residencia.ecommerce.controllers;
 import java.util.List;
 
 import javax.mail.MessagingException;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -67,7 +68,7 @@ public class PedidoController {
     }
 
     @PutMapping("/editar-pedido")
-    public Pedidos editarUmPedido(@RequestBody Pedidos pedidos){
+    public Pedidos editarUmPedido(@Valid @RequestBody Pedidos pedidos){
 
         return pedidosService.editarUmPedido(pedidos);
     }
