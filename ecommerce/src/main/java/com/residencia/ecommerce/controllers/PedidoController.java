@@ -5,6 +5,7 @@ import java.util.List;
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 
+import com.residencia.ecommerce.entities.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -54,7 +55,7 @@ public class PedidoController {
     }
 
     @DeleteMapping("/delete-pedido/{id}")
-    public ResponseEntity<Pedidos> excluirUmPedido(@RequestParam Integer id){
+    public ResponseEntity<Pedidos> excluirUmPedido(@PathVariable Integer id){
         HttpHeaders headers = new HttpHeaders();
         boolean isRemoved = pedidosService.excluirUmPedido(id);
         if (isRemoved){
@@ -79,6 +80,12 @@ public class PedidoController {
         return pedidosService.fecharPedido(id);
 
 
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Pedidos> vizualizarUmPedido(@PathVariable Integer id){
+        HttpHeaders headers = new HttpHeaders();
+        return new ResponseEntity<>(pedidosService.vizualizarUmPedido(id),headers,HttpStatus.OK);
     }
 
 
