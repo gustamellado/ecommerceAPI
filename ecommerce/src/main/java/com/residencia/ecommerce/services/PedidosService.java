@@ -90,9 +90,6 @@ public class PedidosService {
             pedidos.setStatus("fechado");
             pedidosRepository.save(pedidos);
             return fpVO;
-        }else{
-            pedidos.setStatus("testado");
-            pedidosRepository.save(pedidos);
         }
         return fpVO;
     }
