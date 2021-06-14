@@ -1,0 +1,98 @@
+create database ecommerce;
+
+CREATE TABLE public.categoria (
+	categoriaid serial NOT NULL,
+	nomecategoria varchar NULL,
+	descricaocategoria varchar NULL,
+	CONSTRAINT categoria_pkey PRIMARY KEY (categoriaid)
+);
+
+
+
+CREATE TABLE public.cliente (
+	clientid int4 NOT NULL DEFAULT nextval('cliente_clienteid_seq'::regclass),
+	enderecoid int4 NULL,
+	email varchar NULL,
+	username varchar NULL,
+	senha varchar NULL,
+	nome varchar NULL,
+	cpf varchar NULL,
+	telefone varchar NULL,
+	datadenascimento date NULL,
+	CONSTRAINT cliente_cpf_key UNIQUE (cpf),
+	CONSTRAINT cliente_pkey PRIMARY KEY (clientid)
+);
+
+
+
+
+
+
+-- public.cliente foreign keys
+
+ALTER TABLE public.cliente ADD CONSTRAINT cliente_endereco_id_fkey FOREIGN KEY (enderecoid) REFERENCES public.endereco(enderecoid);
+
+
+CREATE TABLE public.endereco (
+	enderecoid serial NOT NULL,
+	cep varchar NULL,
+	rua varchar NULL,
+	bairro varchar NULL,
+	cidade varchar NULL,
+	numero varchar NULL,
+	complemento varchar NULL,
+	estado varchar NULL,
+	CONSTRAINT endereco_pkey PRIMARY KEY (enderecoid)
+);
+
+
+
+CREATE TABLE public.pedidos (
+	pedidoid serial NOT NULL,
+	clientid int4 NULL,
+	numerodopedido int4 NULL,
+	valorpedido numeric NULL,
+	datadopedido date NULL,
+	status varchar NULL,
+	CONSTRAINT pedidos_pkey PRIMARY KEY (pedidoid)
+);
+
+
+-- public.pedidos foreign keys
+
+ALTER TABLE public.pedidos ADD CONSTRAINT pedidos_client_id_fkey FOREIGN KEY (clientid) REFERENCES public.cliente(clientid);
+
+
+
+CREATE TABLE public.produto (
+	produtoid serial NOT NULL,
+	nome varchar NULL,
+	descricao varchar NULL,
+	precoproduto numeric NULL,
+	quantidadeestoque int4 NULL,
+	datadecadastrodoproduto date NULL,
+	imagem varchar NULL,
+	categoriaid int4 NULL,
+	CONSTRAINT produto_pkey PRIMARY KEY (produtoid)
+);
+
+
+-- public.produto foreign keys
+
+ALTER TABLE public.produto ADD CONSTRAINT produto_categoria_id_fkey FOREIGN KEY (categoriaid) REFERENCES public.categoria(categoriaid);
+
+CREATE TABLE public.produtospedidos (
+	produtopedidoid serial NOT NULL,
+	produtoid int4 NULL,
+	pedidoid int4 NULL,
+	quantidade int4 NULL,
+	preco numeric NULL,
+	CONSTRAINT produtospedidos_pkey PRIMARY KEY (produtopedidoid)
+);
+
+
+-- public.produtospedidos foreign keys
+
+ALTER TABLE public.produtospedidos ADD CONSTRAINT produtospedidos_pedidos_id_fkey FOREIGN KEY (pedidoid) REFERENCES public.pedidos(pedidoid);
+ALTER TABLE public.produtospedidos ADD CONSTRAINT produtospedidos_produto_id_fkey FOREIGN KEY (produtoid) REFERENCES public.produto(produtoid);
+
